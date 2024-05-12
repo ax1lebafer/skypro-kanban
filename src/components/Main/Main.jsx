@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Column from "../Column/Column";
 
 const statusList = [
@@ -9,12 +10,21 @@ const statusList = [
 ];
 
 const Main = ({ cardList }) => {
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, [])
+
   return (
     <main className="main">
       <div className="container">
         <div className="main__block">
           <div className="main__content">
-            {statusList.map((status) => (
+            {isLoading && (<span className="loader"></span>)}
+            {!isLoading && statusList.map((status) => (
               <Column
                 key={status}
                 title={status}
