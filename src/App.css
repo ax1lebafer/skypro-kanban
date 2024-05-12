@@ -843,6 +843,10 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #565EEF;
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  border: none;
 }
 
 .header__user::after {
@@ -859,7 +863,7 @@ body {
 }
 
 .header__pop-user-set {
-  display: none;
+  display: block;
   position: absolute;
   top: 61px;
   right: 0;
