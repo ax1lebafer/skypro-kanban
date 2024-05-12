@@ -1,10 +1,23 @@
 import { useState } from "react";
 
-const Header = () => {
+const Header = ({ setCards, cards }) => {
   const [isOpen, setOpen] = useState(false);
 
   function handleOpenModal() {
     setOpen((prevState) => !prevState);
+  }
+
+  function onAddCard() {
+    const newCard = {
+      id: Date.now(),
+      topic: "Web Design",
+      title: "New Task",
+      date: "17.04.2024",
+      status: "Без статуса",
+      color: "orange",
+    };
+    const newCardList = [...cards, newCard];
+    setCards(newCardList);
   }
 
   return (
@@ -22,8 +35,11 @@ const Header = () => {
             </a>
           </div>
           <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
+            <button
+              onClick={onAddCard}
+              className="header__btn-main-new _hover01"
+            >
+              Создать новую задачу
             </button>
             <button onClick={handleOpenModal} className="header__user _hover02">
               Ivan Ivanov

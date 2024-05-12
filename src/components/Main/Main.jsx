@@ -1,4 +1,3 @@
-import { cardList } from "../../data";
 import Column from "../Column/Column";
 
 const statusList = [
@@ -9,7 +8,7 @@ const statusList = [
   "Готово",
 ];
 
-const Main = () => {
+const Main = ({ cardList }) => {
   return (
     <main className="main">
       <div className="container">
