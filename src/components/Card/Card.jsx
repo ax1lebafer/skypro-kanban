@@ -1,10 +1,10 @@
-const Card = ({ title, color }) => {
+const Card = ({ category, color, title, date }) => {
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
           <div className={`card__theme _${color}`}>
-            <p className={`_${color}`}>{title}</p>
+            <p className={`_${color}`}>{category}</p>
           </div>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
@@ -16,7 +16,7 @@ const Card = ({ title, color }) => {
         </div>
         <div className="card__content">
           <a href="" target="_blank">
-            <h3 className="card__title">Название задачи</h3>
+            <h3 className="card__title">{title}</h3>
           </a>
           <div className="card__date">
             <svg
@@ -47,7 +47,7 @@ const Card = ({ title, color }) => {
                 </clipPath>
               </defs>
             </svg>
-            <p>30.10.23</p>
+            <p>{date}</p>
           </div>
         </div>
       </div>
