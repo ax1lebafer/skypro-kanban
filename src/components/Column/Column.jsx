@@ -12,7 +12,6 @@ const Column = ({ title, cardList }) => {
             key={card.id}
             category={card.topic}
             title={card.title}
-            color={card.color}
             date={card.date}
           />
         ))}
