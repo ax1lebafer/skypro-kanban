@@ -1,3 +1,5 @@
+import * as S from "./Card.styled";
+
 const Card = ({ category, title, date }) => {
   const colorList = {
     "Web Design": "orange",
@@ -11,9 +13,9 @@ const Card = ({ category, title, date }) => {
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
-          <div className={`card__theme _${colorName}`}>
-            <p className={`_${colorName}`}>{category}</p>
-          </div>
+          <S.CardTopic $topicColor={`_${colorName}`}>
+            <S.TopicText>{category}</S.TopicText>
+          </S.CardTopic>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
               <div></div>
