@@ -51,12 +51,12 @@ const Header = ({ setCards, cards }) => {
                 className="header__pop-user-set pop-user-set"
                 id="user-set-target"
               >
-                <p className="pop-user-set__name">Ivan Ivanov</p>
-                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-                <div className="pop-user-set__theme">
-                  <p>Темная тема</p>
+                <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
+                <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+                <S.PopUserSetTheme>
+                  <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
                   <input type="checkbox" className="checkbox" name="checkbox" />
-                </div>
+                </S.PopUserSetTheme>
                 <button type="button" className="_hover03">
                   <a href="#popExit">Выйти</a>
                 </button>
