@@ -26,41 +26,33 @@ const Header = ({ setCards, cards }) => {
     <S.Header>
       <Container>
         <S.HeaderBlock>
-          <div className="header__logo _show _light">
-            <a href="" target="_self">
-              <img src="images/logo.png" alt="logo" />
-            </a>
-          </div>
-          <div className="header__logo _dark">
-            <a href="" target="_self">
-              <img src="images/logo_dark.png" alt="logo" />
-            </a>
-          </div>
+          <S.HeaderLogoLight>
+            <S.LogogLink href="" target="_self">
+              <S.HeaderLogoImage src="images/logo.png" alt="logo" />
+            </S.LogogLink>
+          </S.HeaderLogoLight>
+          <S.HeaderLogoDark>
+            <S.LogogLink href="" target="_self">
+              <S.HeaderLogoImage src="images/logo_dark.png" alt="logo" />
+            </S.LogogLink>
+          </S.HeaderLogoDark>
           <S.HeaderNav>
-            <button
-              onClick={onAddCard}
-              className="header__btn-main-new _hover01"
-            >
+            <S.HeaderButtonMainNew onClick={onAddCard}>
               Создать новую задачу
-            </button>
-            <button onClick={handleOpenModal} className="header__user _hover02">
-              Ivan Ivanov
-            </button>
+            </S.HeaderButtonMainNew>
+            <S.HeaderUser onClick={handleOpenModal}>Ivan Ivanov</S.HeaderUser>
             {isOpen && (
-              <div
-                className="header__pop-user-set pop-user-set"
-                id="user-set-target"
-              >
+              <S.PopUserSet>
                 <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
                 <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
                 <S.PopUserSetTheme>
                   <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
-                  <input type="checkbox" className="checkbox" name="checkbox" />
+                  <S.InputCheckbox />
                 </S.PopUserSetTheme>
-                <button type="button" className="_hover03">
-                  <a href="#popExit">Выйти</a>
-                </button>
-              </div>
+                <S.Button>
+                  <S.Link href="#popUser">Выйти</S.Link>
+                </S.Button>
+              </S.PopUserSet>
             )}
           </S.HeaderNav>
         </S.HeaderBlock>
