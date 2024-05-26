@@ -49,9 +49,9 @@ const Header = ({ setCards, cards }) => {
                   <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
                   <S.InputCheckbox />
                 </S.PopUserSetTheme>
-                <S.Button>
-                  <S.Link href="#popUser">Выйти</S.Link>
-                </S.Button>
+                <S.Link href="#popUser">
+                  <S.Button>Выйти</S.Button>
+                </S.Link>
               </S.PopUserSet>
             )}
           </S.HeaderNav>
