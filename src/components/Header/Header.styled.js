@@ -71,7 +71,7 @@ export const HeaderUser = styled.button`
   outline: none;
   border: none;
 
-  ::after {
+  &::after {
     content: "";
     display: block;
     width: 6px;
@@ -102,7 +102,7 @@ export const PopUserSet = styled.div`
   text-align: center;
   z-index: 2;
 
-  :target {
+  &:target {
     display: block;
   }
 `;
