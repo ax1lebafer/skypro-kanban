@@ -1,29 +1,28 @@
-import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
-import PopBrowse from "./components/PopBrowse/PopBrowse";
-import PopExit from "./components/PopExit/PopExit";
-import PopNewCard from "./components/PopNewCard/PopNewCard";
-import { cardList } from "./data";
-import { GlobalStyle } from "./global.styled";
-import { Wrapper } from "./components/shared.styled";
+import { Route, Routes } from "react-router-dom";
+import MainPage from "./pages/MainPage/MainPage";
+import PrivateRoute from "./routes/PrivateRoute";
+import { LoginPage } from "./pages/LoginPage/LoginPage";
+
+const AppRoutes = {
+  HOME: "/",
+  LOGIN: "/login",
+  REGISTER: "/register",
+  EXIT: "/exit",
+  CARD: "/card",
+  NOT_FOUND: "*",
+};
 
 function App() {
-  const [cards, setCards] = useState(cardList);
+  const isAuth = true;
 
   return (
-    <>
-      <GlobalStyle />
-      <Wrapper>
-        <PopExit />
-        <PopNewCard />
-        <PopBrowse />
-
-        <Header setCards={setCards} cards={cards} />
-        <Main cardList={cards} />
-      </Wrapper>
-    </>
+    <Routes>
+      <Route element={<PrivateRoute isAuth={isAuth} />}>
+        <Route path={AppRoutes.HOME} element={<MainPage />} />
+        <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+      </Route>
+    </Routes>
   );
 }
 

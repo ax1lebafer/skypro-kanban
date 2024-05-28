@@ -1,7 +1,7 @@
 import { GlobalStyle } from "../../global.styled";
-import * as S from "./Register.styled";
+import * as S from "./RegisterPage.styled";
 
-export const Register = () => {
+export const RegisterPage = () => {
   return (
     <>
       <GlobalStyle />
