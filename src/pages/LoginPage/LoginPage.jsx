@@ -1,5 +1,6 @@
 import { GlobalStyle } from "../../global.styled";
 import * as S from "./LoginPage.styled";
+import { AppRoutes } from "../../routes/AppRoutes";
 
 export const LoginPage = () => {
   return (
@@ -26,13 +27,13 @@ export const LoginPage = () => {
                   placeholder="Пароль"
                 />
                 <S.ModalButtonEnter id="btnEnter">
-                  <S.ModalButtonLink href="../main.html">
+                  <S.ModalButtonLink to={AppRoutes.HOME}>
                     Войти
                   </S.ModalButtonLink>
                 </S.ModalButtonEnter>
                 <S.ModalFormGroup>
                   <S.ModalFormText>Нужно зарегистрироваться?</S.ModalFormText>
-                  <S.ModalFormLink href="signup.html">
+                  <S.ModalFormLink to={AppRoutes.REGISTER}>
                     Регистрируйтесь здесь
                   </S.ModalFormLink>
                 </S.ModalFormGroup>

@@ -1,4 +1,5 @@
 import { GlobalStyle } from "../../global.styled";
+import { AppRoutes } from "../../routes/AppRoutes";
 import * as S from "./RegisterPage.styled";
 
 export const RegisterPage = () => {
@@ -32,14 +33,14 @@ export const RegisterPage = () => {
                   placeholder="Пароль"
                 />
                 <S.ModalButtonSignup id="SignUpEnter">
-                  <S.ModalButtonLink href="../main.html">
+                  <S.ModalButtonLink to={AppRoutes.REGISTER}>
                     Зарегистрироваться
                   </S.ModalButtonLink>{" "}
                 </S.ModalButtonSignup>
                 <S.ModalFormGroup>
                   <S.ModalFormText>
                     Уже есть аккаунт?{" "}
-                    <S.ModalFormLink href="signin.html">
+                    <S.ModalFormLink to={AppRoutes.LOGIN}>
                       Войдите здесь
                     </S.ModalFormLink>
                   </S.ModalFormText>

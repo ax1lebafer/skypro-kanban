@@ -9,7 +9,7 @@ import { GlobalStyle } from "../../global.styled";
 import { Wrapper } from "../../components/shared.styled";
 import Header from "../../components/Header/Header";
 
-function MainPage() {
+const MainPage = () => {
   const [cards, setCards] = useState(cardList);
 
   return (
@@ -25,6 +25,6 @@ function MainPage() {
       </Wrapper>
     </>
   );
-}
+};
 
 export default MainPage;
