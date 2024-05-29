@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import * as S from "./Card.styled";
 
-const Card = ({ category, title, date }) => {
+const Card = ({ category, title, date, id }) => {
   const colorList = {
     "Web Design": "orange",
     Research: "green",
@@ -17,7 +17,7 @@ const Card = ({ category, title, date }) => {
           <S.CardTopic $topicColor={`_${colorName}`}>
             <S.TopicText>{category}</S.TopicText>
           </S.CardTopic>
-          <Link to="/card/5">
+          <Link to={`/card/${id}`}>
             <S.CardButton>
               <S.CardButtonElement></S.CardButtonElement>
               <S.CardButtonElement></S.CardButtonElement>

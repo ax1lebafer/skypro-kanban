@@ -1,5 +1,6 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
+import { appRoutes } from "../../routes/appRoutes";
 
 const PopBrowse = () => {
   const { id } = useParams();
@@ -72,7 +73,7 @@ const PopBrowse = () => {
                 </button>
               </div>
               <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+                <Link to={appRoutes.HOME}>Закрыть</Link>
               </button>
             </div>
             <div className="pop-browse__btn-edit _hide">

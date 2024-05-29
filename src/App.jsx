@@ -15,8 +15,9 @@ function App() {
   return (
     <Routes>
       <Route element={<PrivateRoute isAuth={isAuth} />}>
-        <Route path={appRoutes.HOME} element={<MainPage />} />
-        <Route path={appRoutes.CARD} element={<CardPage />} />
+        <Route path={appRoutes.HOME} element={<MainPage />}>
+          <Route path={appRoutes.CARD} element={<CardPage />} />
+        </Route>
         <Route path={appRoutes.NOT_FOUND} element={<PageNotFound />} />
       </Route>
       <Route path={appRoutes.LOGIN} element={<LoginPage />} />
