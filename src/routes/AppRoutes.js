@@ -1,8 +1,8 @@
-export const AppRoutes = {
+export const appRoutes = {
     HOME: "/",
     LOGIN: "/login",
     REGISTER: "/register",
     EXIT: "/exit",
-    CARD: "/card",
+    CARD: "/card/:id",
     NOT_FOUND: "*",
   };
