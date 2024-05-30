@@ -11,7 +11,7 @@ import PageNotFound from "./pages/NotFoundPage/NotFoundPage";
 import ExitPage from "./pages/ExitPage/ExitPage";
 
 function App() {
-  const [isAuth, setAuth] = useState(false);
+  const [isAuth, setAuth] = useState(true);
 
   const navigate = useNavigate();
 

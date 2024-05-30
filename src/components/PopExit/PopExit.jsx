@@ -4,23 +4,23 @@ import * as S from "./PopExit.styled";
 
 const PopExit = ({ logout }) => {
   return (
-    <div className="pop-exit" id="popExit">
-      <div className="pop-exit__container">
-        <div className="pop-exit__block">
-          <div className="pop-exit__ttl">
+    <S.PopExit>
+      <S.PopExitContainer>
+        <S.PopExitBlock>
+          <S.PopExitTitle>
             <h2>Выйти из аккаунта?</h2>
-          </div>
-          <form className="pop-exit__form" id="formExit" action="#">
-            <div className="pop-exit__form-group">
+          </S.PopExitTitle>
+          <S.PopExitForm id="formExit" action="#">
+            <S.PopExitFormGroup>
               <Button $primary onClick={logout}>
                 Да, выйти
               </Button>
               <S.ButtonNo to={appRoutes.HOME}>Нет, остаться</S.ButtonNo>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+            </S.PopExitFormGroup>
+          </S.PopExitForm>
+        </S.PopExitBlock>
+      </S.PopExitContainer>
+    </S.PopExit>
   );
 };
 
