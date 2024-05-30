@@ -2,7 +2,7 @@ import { GlobalStyle } from "../../global.styled";
 import * as S from "./LoginPage.styled";
 import { appRoutes } from "../../routes/appRoutes";
 
-export const LoginPage = () => {
+export const LoginPage = ({ login }) => {
   return (
     <>
       <GlobalStyle />
@@ -13,7 +13,7 @@ export const LoginPage = () => {
               <S.ModalTitleWrapper>
                 <S.ModalTitle>Вход</S.ModalTitle>
               </S.ModalTitleWrapper>
-              <S.ModalFormLogin id="formLogIn" action="#">
+              <S.ModalFormLogin id="formLogIn" action="#" onSubmit={login}>
                 <S.ModalInput
                   type="text"
                   name="login"
@@ -26,10 +26,8 @@ export const LoginPage = () => {
                   id="formpassword"
                   placeholder="Пароль"
                 />
-                <S.ModalButtonEnter id="btnEnter">
-                  <S.ModalButtonLink to={appRoutes.HOME}>
-                    Войти
-                  </S.ModalButtonLink>
+                <S.ModalButtonEnter id="btnEnter" type="submit">
+                  Войти
                 </S.ModalButtonEnter>
                 <S.ModalFormGroup>
                   <S.ModalFormText>Нужно зарегистрироваться?</S.ModalFormText>

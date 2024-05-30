@@ -1,7 +1,6 @@
 import { useState } from "react";
 // import "./App.css";
 import Main from "../../components/Main/Main";
-import PopExit from "../../components/PopExit/PopExit";
 import PopNewCard from "../../components/PopNewCard/PopNewCard";
 import { cardList } from "../../data";
 import { GlobalStyle } from "../../global.styled";
@@ -16,7 +15,6 @@ const MainPage = () => {
     <>
       <GlobalStyle />
       <Wrapper>
-        <PopExit />
         <PopNewCard />
 
         <Outlet />

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import * as S from "../shared.styled";
+import { Link } from "react-router-dom";
 
 export const Header = styled.header`
   width: 100%;
@@ -180,7 +181,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Link = styled.a`
+export const ExitLink = styled(Link)`
   color: #565eef;
 
   &:hover {
