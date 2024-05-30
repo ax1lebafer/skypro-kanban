@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { hover03 } from "../shared.styled";
+import { breakpoints } from "../../lib/breakpoints";
 
 export const PopExit = styled.div`
   display: block;
@@ -36,6 +37,10 @@ export const PopExitBlock = styled.div`
   border-radius: 10px;
   border: 0.7px solid #d4dbe5;
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
+
+  @media only screen and (max-width: ${breakpoints.sm}px) {
+    padding: 50px 20px;
+  }
 `;
 
 export const PopExitTitle = styled.div`
@@ -56,6 +61,10 @@ export const PopExitFormGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media only screen and (max-width: ${breakpoints.sm}px) {
+    display: block;
+  }
 `;
 
 export const ButtonNo = styled(Link)`
@@ -75,4 +84,9 @@ export const ButtonNo = styled(Link)`
   text-decoration: none;
 
   ${hover03}
+
+  @media only screen and (max-width: ${breakpoints.sm}px) {
+    width: 100%;
+    height: 40px;
+  }
 `;

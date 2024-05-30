@@ -1,5 +1,18 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { topicStyles } from "../../lib/topic";
+import { breakpoints } from "../../lib/breakpoints";
+
+export const cardAnimation = keyframes`
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+
+  100% {
+    height: auto;
+    opacity: 1;
+  }
+`;
 
 export const TopicText = styled.p`
   font-size: 10px;
@@ -22,7 +35,7 @@ export const CardTopic = styled.div`
 
 export const CardsItem = styled.div`
   padding: 5px;
-  animation-name: card-animation;
+  animation-name: ${cardAnimation};
   animation-duration: 500ms;
   animation-timing-function: linear;
 `;
@@ -37,6 +50,18 @@ export const Card = styled.div`
   align-items: flex-start;
   justify-content: stretch;
   padding: 15px 13px 19px;
+
+  @media screen and (max-width: ${breakpoints.xl}px) {
+    width: 220px;
+    height: 130px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: stretch;
+    padding: 15px 13px 19px;
+  }
 `;
 
 export const CardGroup = styled.div`
@@ -84,6 +109,10 @@ export const CardDate = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
+  svg {
+    width: 13px;
+  }
 `;
 
 export const CardDateText = styled.p`

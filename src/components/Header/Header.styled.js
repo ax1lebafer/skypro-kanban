@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import * as S from "../shared.styled";
 import { Link } from "react-router-dom";
+import { breakpoints } from "../../lib/breakpoints";
 
 export const Header = styled.header`
   width: 100%;
@@ -56,6 +57,18 @@ export const HeaderButtonMainNew = styled.button`
   margin-right: 20px;
 
   ${S.hover01}
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    z-index: 3;
+    position: fixed;
+    left: 16px;
+    bottom: 30px;
+    top: auto;
+    width: calc(100vw - 32px);
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 0;
+  }
 `;
 
 export const HeaderUser = styled.button`
