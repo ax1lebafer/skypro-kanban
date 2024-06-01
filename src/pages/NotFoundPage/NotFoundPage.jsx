@@ -1,5 +1,5 @@
 import { GlobalStyle } from "../../global.styled";
-import { appRoutes } from "../../routes/appRoutes";
+import { appRoutes } from "../../lib/appRoutes";
 import * as S from "./NotFoundPage.styled";
 
 const PageNotFound = () => {

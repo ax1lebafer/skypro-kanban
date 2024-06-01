@@ -1,8 +1,7 @@
 import { useState } from "react";
-// import "./App.css";
 import Main from "../../components/Main/Main";
 import PopNewCard from "../../components/PopNewCard/PopNewCard";
-import { cardList } from "../../data";
+import { cardList } from "../../lib/data";
 import { GlobalStyle } from "../../global.styled";
 import { Wrapper } from "../../components/shared.styled";
 import Header from "../../components/Header/Header";

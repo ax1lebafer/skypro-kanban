@@ -1,4 +1,4 @@
-import { appRoutes } from "../../routes/appRoutes";
+import { appRoutes } from "../../lib/appRoutes";
 import { Button } from "../shared.styled";
 import * as S from "./PopExit.styled";
 
