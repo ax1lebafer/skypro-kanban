@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
+import { breakpoints } from "../lib/breakpoints";
 
 export const hover01 = css`
   &:hover {
@@ -49,6 +50,11 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 30px;
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    width: 100%;
+    padding: 0 16px;
+  }
 `;
 
 export const Wrapper = styled.div`

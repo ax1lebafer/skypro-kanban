@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Container } from "../shared.styled";
+import { Container } from "../../styles/shared.styled";
 import * as S from "./Header.styled";
+import { appRoutes } from "../../lib/appRoutes";
 
 const Header = ({ setCards, cards }) => {
   const [isOpen, setOpen] = useState(false);
@@ -49,9 +50,9 @@ const Header = ({ setCards, cards }) => {
                   <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
                   <S.InputCheckbox />
                 </S.PopUserSetTheme>
-                <S.Link href="#popUser">
+                <S.ExitLink to={appRoutes.EXIT}>
                   <S.Button>Выйти</S.Button>
-                </S.Link>
+                </S.ExitLink>
               </S.PopUserSet>
             )}
           </S.HeaderNav>

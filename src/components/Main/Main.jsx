@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Column from "../Column/Column";
 import * as S from "./Main.styled";
-import { Container, Loader } from "../shared.styled";
+import { Container, Loader } from "../../styles/shared.styled";
 
 const statusList = [
   "Без статуса",
