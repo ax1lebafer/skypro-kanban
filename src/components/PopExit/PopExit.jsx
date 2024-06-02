@@ -1,5 +1,5 @@
 import { appRoutes } from "../../lib/appRoutes";
-import { Button } from "../shared.styled";
+import { Button } from "../../styles/shared.styled";
 import * as S from "./PopExit.styled";
 
 const PopExit = ({ logout }) => {

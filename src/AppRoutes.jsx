@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { appRoutes } from "./lib/appRoutes";
 import { RegisterPage } from "./pages/RegisterPage/RegisterPage";

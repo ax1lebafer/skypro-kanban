@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import * as S from "../shared.styled";
+import * as S from "../../styles/shared.styled";
 import { Link } from "react-router-dom";
 import { breakpoints } from "../../lib/breakpoints";
 

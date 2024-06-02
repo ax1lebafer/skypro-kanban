@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { hover03 } from "../shared.styled";
+import { hover03 } from "../../styles/shared.styled";
 import { breakpoints } from "../../lib/breakpoints";
 
 export const PopExit = styled.div`

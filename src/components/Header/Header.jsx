@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container } from "../shared.styled";
+import { Container } from "../../styles/shared.styled";
 import * as S from "./Header.styled";
 import { appRoutes } from "../../lib/appRoutes";
 
