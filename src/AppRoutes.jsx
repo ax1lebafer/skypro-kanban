@@ -11,15 +11,10 @@ import PageNotFound from "./pages/NotFoundPage/NotFoundPage";
 import ExitPage from "./pages/ExitPage/ExitPage";
 
 const AppRoutes = () => {
-  const [isAuth, setAuth] = useState(true);
+  const [isAuth, setAuth] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   const navigate = useNavigate();
-
-  const login = (event) => {
-    event.preventDefault();
-    setAuth(true);
-    navigate(appRoutes.HOME);
-  };
 
   const logout = () => {
     setAuth(false);
@@ -28,14 +23,17 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route element={<PrivateRoute isAuth={isAuth} />}>
+      <Route element={<PrivateRoute isAuth={isAuth} userData={userData} />}>
         <Route path={appRoutes.HOME} element={<MainPage />}>
           <Route path={appRoutes.CARD} element={<CardPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage logout={logout} />} />
         </Route>
         <Route path={appRoutes.NOT_FOUND} element={<PageNotFound />} />
       </Route>
-      <Route path={appRoutes.LOGIN} element={<LoginPage login={login} />} />
+      <Route
+        path={appRoutes.LOGIN}
+        element={<LoginPage setAuth={setAuth} setUserData={setUserData} />}
+      />
       <Route path={appRoutes.REGISTER} element={<RegisterPage />} />
     </Routes>
   );

@@ -94,6 +94,11 @@ export const ModalInput = styled.input`
   }
 `;
 
+export const ErrorMessage = styled.p`
+  color: red;
+  margin-bottom: 20px;
+`;
+
 export const ModalButtonEnter = styled.button`
   width: 100%;
   height: 30px;

@@ -17,7 +17,6 @@ const MainPage = () => {
       try {
         setLoadingGetTasks(true);
         const newTasks = await getTasks();
-        console.log(newTasks.tasks);
         setTasks(newTasks.tasks);
       } catch (error) {
         setGetTasksError(error.message);
