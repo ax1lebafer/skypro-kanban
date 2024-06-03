@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Column from "../Column/Column";
 import * as S from "./Main.styled";
 import { Container, Loader } from "../../styles/shared.styled";
@@ -11,15 +10,7 @@ const statusList = [
   "Готово",
 ];
 
-const Main = ({ taskList }) => {
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
+const Main = ({ taskList, isLoading }) => {
   return (
     <S.Main>
       <Container>

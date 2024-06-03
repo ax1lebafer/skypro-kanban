@@ -10,15 +10,19 @@ import * as S from "./MainPage.styled";
 const MainPage = () => {
   const [tasks, setTasks] = useState([]);
   const [getTasksError, setGetTasksError] = useState(null);
+  const [isLoadingGetTasks, setLoadingGetTasks] = useState(false);
 
   useEffect(() => {
     const fetchTasks = async () => {
       try {
+        setLoadingGetTasks(true);
         const newTasks = await getTasks();
         console.log(newTasks.tasks);
         setTasks(newTasks.tasks);
       } catch (error) {
         setGetTasksError(error.message);
+      } finally {
+        setLoadingGetTasks(false);
       }
     };
 
@@ -31,7 +35,9 @@ const MainPage = () => {
 
       <Outlet />
       <Header setTasks={setTasks} tasks={tasks} />
-      {!getTasksError && <Main taskList={tasks} />}
+      {!getTasksError && (
+        <Main taskList={tasks} isLoading={isLoadingGetTasks} />
+      )}
       {getTasksError && <S.ErrorMessage>{getTasksError}</S.ErrorMessage>}
     </Wrapper>
   );
