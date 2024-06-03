@@ -1,7 +1,56 @@
+import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 import * as S from "./RegisterPage.styled";
+import { useState } from "react";
+import { register } from "../../lib/api";
 
-export const RegisterPage = () => {
+export const RegisterPage = ({ setUserData }) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
+  const [formValues, setFormValues] = useState({
+    login: "",
+    password: "",
+    name: "",
+  });
+
+  const onInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const onRegister = async (event) => {
+    event.preventDefault();
+
+    if (!formValues.name) {
+      setError("Введите имя!");
+      return;
+    }
+
+    if (!formValues.login) {
+      setError("Введите логин!");
+      return;
+    }
+
+    if (!formValues.password) {
+      setError("Введите пароль!");
+      return;
+    }
+
+    try {
+      const response = await register({
+        name: formValues.name,
+        login: formValues.login,
+        password: formValues.password,
+      });
+
+      setUserData(response.user);
+      navigate(appRoutes.HOME);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <S.Wrapper>
       <S.ContainerSignup>
@@ -13,27 +62,34 @@ export const RegisterPage = () => {
             <S.ModalFormLogin id="formLogUp" action="#">
               <S.ModalInput
                 type="text"
-                name="first-name"
+                name="name"
                 id="first-name"
                 placeholder="Имя"
+                value={formValues.name}
+                onChange={onInputChange}
               />
               <S.ModalInput
                 type="text"
                 name="login"
                 id="loginReg"
                 placeholder="Эл. почта"
+                value={formValues.login}
+                onChange={onInputChange}
               />
               <S.ModalInput
                 type="password"
                 name="password"
                 id="passwordFirst"
                 placeholder="Пароль"
+                value={formValues.password}
+                onChange={onInputChange}
               />
-              <S.ModalButtonSignup id="SignUpEnter">
+              <S.ModalButtonSignup id="SignUpEnter" onClick={onRegister}>
                 <S.ModalButtonLink to={appRoutes.REGISTER}>
                   Зарегистрироваться
                 </S.ModalButtonLink>{" "}
               </S.ModalButtonSignup>
+              {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
               <S.ModalFormGroup>
                 <S.ModalFormText>
                   Уже есть аккаунт?{" "}

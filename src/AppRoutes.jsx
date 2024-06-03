@@ -24,8 +24,8 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route element={<PrivateRoute isAuth={isAuth} userData={userData} />}>
-        <Route path={appRoutes.HOME} element={<MainPage />}>
+      <Route element={<PrivateRoute isAuth={isAuth} />}>
+        <Route path={appRoutes.HOME} element={<MainPage userData={userData} />}>
           <Route path={appRoutes.CARD} element={<CardPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage logout={logout} />} />
         </Route>
@@ -35,7 +35,10 @@ const AppRoutes = () => {
         path={appRoutes.LOGIN}
         element={<LoginPage setAuth={setAuth} setUserData={setUserData} />}
       />
-      <Route path={appRoutes.REGISTER} element={<RegisterPage />} />
+      <Route
+        path={appRoutes.REGISTER}
+        element={<RegisterPage setUserData={setUserData} />}
+      />
     </Routes>
   );
 };

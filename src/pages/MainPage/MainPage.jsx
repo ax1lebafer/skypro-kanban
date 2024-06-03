@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 import { getTasks } from "../../lib/api";
 import * as S from "./MainPage.styled";
 
-const MainPage = () => {
+const MainPage = ({ userData }) => {
   const [tasks, setTasks] = useState([]);
   const [getTasksError, setGetTasksError] = useState(null);
   const [isLoadingGetTasks, setLoadingGetTasks] = useState(false);
@@ -16,7 +16,7 @@ const MainPage = () => {
     const fetchTasks = async () => {
       try {
         setLoadingGetTasks(true);
-        const newTasks = await getTasks();
+        const newTasks = await getTasks({token: userData.token});
         setTasks(newTasks.tasks);
       } catch (error) {
         setGetTasksError(error.message);
@@ -26,7 +26,7 @@ const MainPage = () => {
     };
 
     fetchTasks();
-  }, []);
+  }, [userData.token]);
 
   return (
     <Wrapper>

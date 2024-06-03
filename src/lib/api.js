@@ -1,6 +1,6 @@
 const host = "https://wedev-api.sky.pro/api/kanban";
 const loginHost = "https://wedev-api.sky.pro/api/user/login";
-const token = "bgc0b8awbwas6g5g5k5o5s5w606g37w3cc3bo3b83k39s3co3c83c03ck";
+const registerHost = "https://wedev-api.sky.pro/api/user";
 
 export async function login({ login, password }) {
   const response = await fetch(loginHost, {
@@ -23,7 +23,25 @@ export async function login({ login, password }) {
   return data;
 }
 
-export async function getTasks() {
+export async function register({ login, password, name }) {
+  const response = await fetch(registerHost, {
+    method: "POST",
+    body: JSON.stringify({
+      login,
+      password,
+      name,
+    }),
+  });
+
+  if (response.status === 400) {
+    throw new Error("Пользователь с таким логином уже есть");
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+export async function getTasks({token}) {
   const response = await fetch(host, {
     method: "GET",
     headers: {
