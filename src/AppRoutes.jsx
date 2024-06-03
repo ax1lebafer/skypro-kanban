@@ -18,6 +18,7 @@ const AppRoutes = () => {
 
   const logout = () => {
     setAuth(false);
+    localStorage.removeItem("user");
     navigate(appRoutes.LOGIN);
   };
 
