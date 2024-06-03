@@ -11,7 +11,7 @@ const statusList = [
   "Готово",
 ];
 
-const Main = ({ cardList }) => {
+const Main = ({ taskList }) => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Main = ({ cardList }) => {
                 <Column
                   key={status}
                   title={status}
-                  cardList={cardList.filter((card) => card.status === status)}
+                  taskList={taskList.filter((card) => card.status === status)}
                 />
               ))}
           </S.MainContent>

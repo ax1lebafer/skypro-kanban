@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Main from "../../components/Main/Main";
 import PopNewCard from "../../components/PopNewCard/PopNewCard";
-import { cardList } from "../../lib/data";
 import { Wrapper } from "../../styles/shared.styled";
 import Header from "../../components/Header/Header";
 import { Outlet } from "react-router-dom";
+import { getTasks } from "../../lib/api";
 
 const MainPage = () => {
-  const [cards, setCards] = useState(cardList);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const newTasks = await getTasks();
+      console.log(newTasks.tasks);
+      setTasks(newTasks.tasks);
+    };
+
+    fetchTasks();
+  }, []);
 
   return (
     <Wrapper>
       <PopNewCard />
 
       <Outlet />
-      <Header setCards={setCards} cards={cards} />
-      <Main cardList={cards} />
+      <Header setTasks={setTasks} tasks={tasks} />
+      <Main taskList={tasks} />
     </Wrapper>
   );
 };
