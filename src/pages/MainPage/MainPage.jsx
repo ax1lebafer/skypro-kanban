@@ -5,15 +5,21 @@ import { Wrapper } from "../../styles/shared.styled";
 import Header from "../../components/Header/Header";
 import { Outlet } from "react-router-dom";
 import { getTasks } from "../../lib/api";
+import * as S from "./MainPage.styled";
 
 const MainPage = () => {
   const [tasks, setTasks] = useState([]);
+  const [getTasksError, setGetTasksError] = useState(null);
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const newTasks = await getTasks();
-      console.log(newTasks.tasks);
-      setTasks(newTasks.tasks);
+      try {
+        const newTasks = await getTasks();
+        console.log(newTasks.tasks);
+        setTasks(newTasks.tasks);
+      } catch (error) {
+        setGetTasksError(error.message);
+      }
     };
 
     fetchTasks();
@@ -25,7 +31,8 @@ const MainPage = () => {
 
       <Outlet />
       <Header setTasks={setTasks} tasks={tasks} />
-      <Main taskList={tasks} />
+      {!getTasksError && <Main taskList={tasks} />}
+      {getTasksError && <S.ErrorMessage>{getTasksError}</S.ErrorMessage>}
     </Wrapper>
   );
 };
