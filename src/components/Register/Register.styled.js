@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   background-color: #eaeef6;
 `;
 
-export const ContainerSigin = styled.div`
+export const ContainerSignup = styled.div`
   display: block;
   width: 100vw;
   min-height: 100vh;
@@ -53,9 +53,9 @@ export const ModalBlock = styled.div`
   }
 `;
 
-export const ModalTitleWrapper = styled.div``;
+export const ModalTitle = styled.div``;
 
-export const ModalTitle = styled.h2`
+export const ModalTitleText = styled.h2`
   text-align: center;
   font-size: 20px;
   font-weight: 700;
@@ -80,7 +80,7 @@ export const ModalInput = styled.input`
   outline: none;
   padding: 10px 8px;
 
-  &:first-child {
+  &:not(:last-child) {
     margin-bottom: 7px;
   }
 
@@ -94,13 +94,7 @@ export const ModalInput = styled.input`
   }
 `;
 
-export const ErrorMessage = styled.p`
-  color: red;
-  margin-bottom: 20px;
-  text-align: center;
-`;
-
-export const ModalButtonEnter = styled.button`
+export const ModalButtonSignup = styled.button`
   width: 100%;
   height: 30px;
   background-color: #565eef;
@@ -132,6 +126,12 @@ export const ModalButtonLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  margin-bottom: 20px;
+  text-align: center;
 `;
 
 export const ModalFormGroup = styled.div`

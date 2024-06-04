@@ -4,7 +4,7 @@ import MainPage from "./pages/MainPage/MainPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { appRoutes } from "./lib/appRoutes";
-import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { useState } from "react";
 import CardPage from "./pages/CardPage/CardPage";
 import ExitPage from "./pages/ExitPage/ExitPage";
