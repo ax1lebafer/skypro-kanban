@@ -7,8 +7,8 @@ import { appRoutes } from "./lib/appRoutes";
 import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
 import { useState } from "react";
 import CardPage from "./pages/CardPage/CardPage";
-import PageNotFound from "./pages/NotFoundPage/NotFoundPage";
 import ExitPage from "./pages/ExitPage/ExitPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 const AppRoutes = () => {
   const [isAuth, setAuth] = useState(false);
@@ -38,7 +38,7 @@ const AppRoutes = () => {
         path={appRoutes.REGISTER}
         element={<RegisterPage setUserData={setUserData} />}
       />
-      <Route path={appRoutes.NOT_FOUND} element={<PageNotFound />} />
+      <Route path={appRoutes.NOT_FOUND} element={<NotFoundPage />} />
     </Routes>
   );
 };
