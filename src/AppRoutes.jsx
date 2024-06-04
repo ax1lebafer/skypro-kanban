@@ -29,7 +29,6 @@ const AppRoutes = () => {
           <Route path={appRoutes.CARD} element={<CardPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage logout={logout} />} />
         </Route>
-        <Route path={appRoutes.NOT_FOUND} element={<PageNotFound />} />
       </Route>
       <Route
         path={appRoutes.LOGIN}
@@ -39,6 +38,7 @@ const AppRoutes = () => {
         path={appRoutes.REGISTER}
         element={<RegisterPage setUserData={setUserData} />}
       />
+      <Route path={appRoutes.NOT_FOUND} element={<PageNotFound />} />
     </Routes>
   );
 };

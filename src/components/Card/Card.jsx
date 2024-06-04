@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import * as S from "./Card.styled";
 
-const Card = ({ category, title, date, id }) => {
-  const colorList = {
-    "Web Design": "orange",
-    Research: "green",
-    Copywriting: "purple",
-  };
+const colorList = {
+  "Web Design": "orange",
+  Research: "green",
+  Copywriting: "purple",
+};
 
+const Card = ({ category, title, date, id }) => {
   const colorName = colorList[category] || "orange";
 
   return (
