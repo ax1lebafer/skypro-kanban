@@ -128,6 +128,12 @@ export const ModalButtonLink = styled(Link)`
   justify-content: center;
 `;
 
+export const ErrorMessage = styled.p`
+  color: red;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
 export const ModalFormGroup = styled.div`
   text-align: center;
 `;

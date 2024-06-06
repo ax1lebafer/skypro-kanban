@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { hover01 } from "../../styles/shared.styled";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ export const Wrapper = styled.div`
   background-color: #eaeef6;
 `;
 
-export const ContainerSignup = styled.div`
+export const ContainerSigin = styled.div`
   display: block;
   width: 100vw;
   min-height: 100vh;
@@ -52,9 +53,9 @@ export const ModalBlock = styled.div`
   }
 `;
 
-export const ModalTitle = styled.div``;
+export const ModalTitleWrapper = styled.div``;
 
-export const ModalTitleText = styled.h2`
+export const ModalTitle = styled.h2`
   text-align: center;
   font-size: 20px;
   font-weight: 700;
@@ -79,11 +80,11 @@ export const ModalInput = styled.input`
   outline: none;
   padding: 10px 8px;
 
-  :not(:last-child) {
+  &:first-child {
     margin-bottom: 7px;
   }
 
-  ::placeholder {
+  &::placeholder {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -93,7 +94,13 @@ export const ModalInput = styled.input`
   }
 `;
 
-export const ModalButtonSignup = styled.button`
+export const ErrorMessage = styled.p`
+  color: red;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+export const ModalButtonEnter = styled.button`
   width: 100%;
   height: 30px;
   background-color: #565eef;
@@ -118,7 +125,7 @@ export const ModalButtonSignup = styled.button`
   }
 `;
 
-export const ModalButtonLink = styled.a`
+export const ModalButtonLink = styled(Link)`
   width: 100%;
   height: 100%;
   color: #ffffff;
@@ -139,7 +146,7 @@ export const ModalFormText = styled.p`
   letter-spacing: -0.14px;
 `;
 
-export const ModalFormLink = styled.a`
+export const ModalFormLink = styled(Link)`
   color: rgba(148, 166, 190, 0.4);
   font-size: 14px;
   font-weight: 400;

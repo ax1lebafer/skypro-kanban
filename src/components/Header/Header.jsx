@@ -3,7 +3,7 @@ import { Container } from "../../styles/shared.styled";
 import * as S from "./Header.styled";
 import { appRoutes } from "../../lib/appRoutes";
 
-const Header = ({ setCards, cards }) => {
+const Header = ({ setTasks, tasks }) => {
   const [isOpen, setOpen] = useState(false);
 
   function handleOpenModal() {
@@ -11,16 +11,16 @@ const Header = ({ setCards, cards }) => {
   }
 
   function onAddCard() {
-    const newCard = {
-      id: Date.now(),
+    const newTask = {
+      _id: Date.now(),
       topic: "Web Design",
       title: "New Task",
       date: "17.04.2024",
       status: "Без статуса",
       color: "orange",
     };
-    const newCardList = [...cards, newCard];
-    setCards(newCardList);
+    const newTaskList = [...tasks, newTask];
+    setTasks(newTaskList);
   }
 
   return (

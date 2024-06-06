@@ -1,14 +1,7 @@
-import { appRoutes } from "../../lib/appRoutes";
-import * as S from "./NotFoundPage.styled";
+import NotFound from "../../components/NotFound/NotFound";
 
-const PageNotFound = () => {
-  return (
-    <S.Container>
-      <S.Title>404</S.Title>
-      <S.Description>Страница не найдена</S.Description>
-      <S.HomeButton to={appRoutes.HOME}>Вернуться на главную</S.HomeButton>
-    </S.Container>
-  );
+const NotFoundPage = () => {
+  return ( <NotFound />);
 };
 
-export default PageNotFound;
+export default NotFoundPage;

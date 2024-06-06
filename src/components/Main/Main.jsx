@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Column from "../Column/Column";
 import * as S from "./Main.styled";
 import { Container, Loader } from "../../styles/shared.styled";
@@ -11,15 +10,7 @@ const statusList = [
   "Готово",
 ];
 
-const Main = ({ cardList }) => {
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
+const Main = ({ taskList, isLoading }) => {
   return (
     <S.Main>
       <Container>
@@ -31,7 +22,7 @@ const Main = ({ cardList }) => {
                 <Column
                   key={status}
                   title={status}
-                  cardList={cardList.filter((card) => card.status === status)}
+                  taskList={taskList.filter((card) => card.status === status)}
                 />
               ))}
           </S.MainContent>

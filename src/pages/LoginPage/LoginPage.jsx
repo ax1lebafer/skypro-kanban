@@ -1,41 +1,7 @@
-import * as S from "./LoginPage.styled";
-import { appRoutes } from "../../lib/appRoutes";
+import Login from "../../components/Login/Login";
 
-export const LoginPage = ({ login }) => {
-  return (
-    <S.Wrapper>
-      <S.ContainerSigin>
-        <S.Modal>
-          <S.ModalBlock>
-            <S.ModalTitleWrapper>
-              <S.ModalTitle>Вход</S.ModalTitle>
-            </S.ModalTitleWrapper>
-            <S.ModalFormLogin id="formLogIn" action="#" onSubmit={login}>
-              <S.ModalInput
-                type="text"
-                name="login"
-                id="formlogin"
-                placeholder="Эл. почта"
-              />
-              <S.ModalInput
-                type="password"
-                name="password"
-                id="formpassword"
-                placeholder="Пароль"
-              />
-              <S.ModalButtonEnter id="btnEnter" type="submit">
-                Войти
-              </S.ModalButtonEnter>
-              <S.ModalFormGroup>
-                <S.ModalFormText>Нужно зарегистрироваться?</S.ModalFormText>
-                <S.ModalFormLink to={appRoutes.REGISTER}>
-                  Регистрируйтесь здесь
-                </S.ModalFormLink>
-              </S.ModalFormGroup>
-            </S.ModalFormLogin>
-          </S.ModalBlock>
-        </S.Modal>
-      </S.ContainerSigin>
-    </S.Wrapper>
-  );
+const LoginPage = ({ setAuth, setUserData }) => {
+  return <Login setAuth={setAuth} setUserData={setUserData} />;
 };
+
+export default LoginPage;
