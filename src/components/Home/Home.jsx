@@ -4,9 +4,12 @@ import { Wrapper } from "../../styles/shared.styled";
 import Header from "../../components/Header/Header";
 import { getTasks } from "../../lib/api";
 import * as S from "./Home.styled";
+import { useUser } from "../../hooks/useUser";
+import { useTasks } from "../../hooks/useTasks";
 
-const Home = ({ userData }) => {
-  const [tasks, setTasks] = useState([]);
+const Home = () => {
+  const { userData } = useUser();
+  const {tasks, setTasks} = useTasks();
   const [getTasksError, setGetTasksError] = useState(null);
   const [isLoadingGetTasks, setLoadingGetTasks] = useState(false);
 
@@ -24,7 +27,7 @@ const Home = ({ userData }) => {
     };
 
     fetchTasks();
-  }, [userData.token]);
+  }, []);
 
   return (
     <Wrapper>

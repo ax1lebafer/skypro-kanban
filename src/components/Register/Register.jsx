@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../../lib/appRoutes";
 import { useState } from "react";
 import { register } from "../../lib/api";
+import { useUser } from "../../hooks/useUser";
 
-const Register = ({ setUserData }) => {
+const Register = () => {
+  const { setUser } = useUser();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
@@ -44,7 +46,7 @@ const Register = ({ setUserData }) => {
         password: formValues.password,
       });
 
-      setUserData(response.user);
+      setUser(response.user);
       navigate(appRoutes.HOME);
     } catch (error) {
       setError(error.message);

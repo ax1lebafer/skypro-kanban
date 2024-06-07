@@ -1,4 +1,7 @@
-const Calendar = () => {
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+
+const Calendar = ({ selected, setSelected }) => {
   return (
     <div className="pop-new-card__calendar calendar">
       <p className="calendar__ttl subttl">Даты</p>
@@ -29,7 +32,7 @@ const Calendar = () => {
           </div>
         </div>
         <div className="calendar__content">
-          <div className="calendar__days-names">
+          {/* <div className="calendar__days-names">
             <div className="calendar__day-name">пн</div>
             <div className="calendar__day-name">вт</div>
             <div className="calendar__day-name">ср</div>
@@ -74,7 +77,8 @@ const Calendar = () => {
             <div className="calendar__cell _cell-day">29</div>
             <div className="calendar__cell _cell-day _weekend">30</div>
             <div className="calendar__cell _other-month _weekend">1</div>
-          </div>
+          </div> */}
+          <DayPicker mode="single" selected={selected} onSelect={setSelected} />
         </div>
 
         <input type="hidden" id="datepick_value" value="08.09.2023" />

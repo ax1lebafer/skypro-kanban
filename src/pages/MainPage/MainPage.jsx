@@ -2,12 +2,11 @@ import { Wrapper } from "../../styles/shared.styled";
 import { Outlet } from "react-router-dom";
 import Home from "../../components/Home/Home";
 
-const MainPage = ({ userData }) => {
-
+const MainPage = () => {
   return (
     <Wrapper>
       <Outlet />
-      <Home userData={userData}/>
+      <Home />
     </Wrapper>
   );
 };
