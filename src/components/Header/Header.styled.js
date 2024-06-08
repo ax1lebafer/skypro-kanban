@@ -44,7 +44,10 @@ export const HeaderNav = styled.nav`
   justify-content: center;
 `;
 
-export const HeaderButtonMainNew = styled.button`
+export const HeaderButtonMainNew = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 178px;
   height: 30px;
   border-radius: 4px;
@@ -55,6 +58,8 @@ export const HeaderButtonMainNew = styled.button`
   line-height: 1;
   font-weight: 500;
   margin-right: 20px;
+  cursor: pointer;
+  outline: none;
 
   ${S.hover01}
 

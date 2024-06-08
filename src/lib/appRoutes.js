@@ -5,4 +5,5 @@ export const appRoutes = {
     EXIT: "/exit",
     CARD: "/card/:id",
     NOT_FOUND: "*",
+    ADD_TASK: '/add-task'
   };

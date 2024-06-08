@@ -189,6 +189,12 @@ export const Categories = styled.div`
   margin-bottom: 20px;
 `;
 
+export const ErrorMessage = styled.p`
+  color: red;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
 export const CategoriesText = styled.p`
   margin-bottom: 14px;
   color: #000;

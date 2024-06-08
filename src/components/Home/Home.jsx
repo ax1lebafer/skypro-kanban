@@ -9,7 +9,7 @@ import { useTasks } from "../../hooks/useTasks";
 
 const Home = () => {
   const { userData } = useUser();
-  const {tasks, setTasks} = useTasks();
+  const { setTasks } = useTasks();
   const [getTasksError, setGetTasksError] = useState(null);
   const [isLoadingGetTasks, setLoadingGetTasks] = useState(false);
 
@@ -31,10 +31,8 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <Header setTasks={setTasks} tasks={tasks} />
-      {!getTasksError && (
-        <Main taskList={tasks} isLoading={isLoadingGetTasks} />
-      )}
+      <Header />
+      {!getTasksError && <Main isLoading={isLoadingGetTasks} />}
       {getTasksError && <S.ErrorMessage>{getTasksError}</S.ErrorMessage>}
     </Wrapper>
   );
