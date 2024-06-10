@@ -162,21 +162,19 @@ export const FormNewArea = styled.textarea`
   max-width: 370px;
   margin-top: 14px;
   height: 200px;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 
   &::placeholder {
     font-weight: 400;
     font-size: 14px;
-    line-height: 1px;
     color: #94a6be;
-    letter-spacing: -0.14px;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
 
   &::-moz-placeholder {
     font-weight: 400;
     font-size: 14px;
-    line-height: 1px;
     color: #94a6be;
-    letter-spacing: -0.14px;
   }
 
   @media screen and (max-width: ${breakpoints.md}px) {
