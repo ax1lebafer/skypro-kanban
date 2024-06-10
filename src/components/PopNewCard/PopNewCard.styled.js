@@ -232,9 +232,9 @@ export const CategoriesTheme = styled.div`
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
-  opacity: ${({ isActive }) => (isActive ? "1" : "0.4")};
+  opacity: ${({ $isActive }) => ($isActive ? "1" : "0.4")};
 
-  ${({ theme }) => themeStyles[theme] || ""}
+  ${({ $theme }) => themeStyles[$theme] || ""}
 `;
 
 export const CategoriesThemeText = styled.p`
@@ -243,7 +243,7 @@ export const CategoriesThemeText = styled.p`
   line-height: 14px;
   white-space: nowrap;
 
-  ${({ theme }) => themeStyles[theme] || ""}
+  ${({ $theme }) => themeStyles[$theme] || ""}
 `;
 
 export const FormNewCreateButton = styled.button`

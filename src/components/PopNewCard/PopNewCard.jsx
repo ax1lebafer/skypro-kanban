@@ -40,9 +40,7 @@ const PopNewCard = () => {
         date: task.date,
       });
 
-      console.log("ADD TASK RESPONSE", response.user);
-
-      setTasks(response.task);
+      setTasks(response.tasks);
       navigate(appRoutes.HOME);
     } catch (error) {
       console.log(error.message);
@@ -96,18 +94,18 @@ const PopNewCard = () => {
             <S.Categories>
               <S.CategoriesText>Категория</S.CategoriesText>
               <S.CategoriesThemes>
-                <S.CategoriesTheme theme={"orange"} isActive={true}>
-                  <S.CategoriesThemeText theme={"orange"}>
+                <S.CategoriesTheme $theme={"orange"} $isActive={true}>
+                  <S.CategoriesThemeText $theme={"orange"}>
                     Web Design
                   </S.CategoriesThemeText>
                 </S.CategoriesTheme>
-                <S.CategoriesTheme theme={"green"}>
-                  <S.CategoriesThemeText theme={"green"}>
+                <S.CategoriesTheme $theme={"green"}>
+                  <S.CategoriesThemeText $theme={"green"}>
                     Research
                   </S.CategoriesThemeText>
                 </S.CategoriesTheme>
-                <S.CategoriesTheme theme={"purple"}>
-                  <S.CategoriesThemeText theme={"purple"}>
+                <S.CategoriesTheme $theme={"purple"}>
+                  <S.CategoriesThemeText $theme={"purple"}>
                     Copywriting
                   </S.CategoriesThemeText>
                 </S.CategoriesTheme>
