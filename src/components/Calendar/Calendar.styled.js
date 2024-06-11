@@ -2,7 +2,6 @@ import { DayPicker } from "react-day-picker";
 import styled from "styled-components";
 
 export const Calendar = styled.div`
-  width: 168px;
   margin-bottom: 20px;
 `;
 

@@ -44,7 +44,7 @@ export const PopNewCardBlock = styled.div`
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
-  max-width: 630px;
+  max-width: 730px;
   width: 100%;
   padding: 40px 30px 48px;
   border-radius: 10px;
@@ -230,6 +230,7 @@ export const CategoriesTheme = styled.div`
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
+  cursor: pointer;
   opacity: ${({ $isActive }) => ($isActive ? "1" : "0.4")};
 
   ${({ $theme }) => themeStyles[$theme] || ""}

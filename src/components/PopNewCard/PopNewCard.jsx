@@ -12,6 +12,13 @@ const PopNewCard = () => {
   const { setTasks } = useTasks();
   const navigate = useNavigate();
 
+  const [activeTheme, setActiveTheme] = useState("Research");
+
+  const handleThemeClick = (theme, topic) => {
+    setActiveTheme(theme);
+    setTask({ ...task, topic: topic });
+  };
+
   const [task, setTask] = useState({
     title: "",
     topic: "Research",
@@ -94,17 +101,29 @@ const PopNewCard = () => {
             <S.Categories>
               <S.CategoriesText>Категория</S.CategoriesText>
               <S.CategoriesThemes>
-                <S.CategoriesTheme $theme={"orange"} $isActive={true}>
+                <S.CategoriesTheme
+                  $theme={"orange"}
+                  $isActive={activeTheme === "orange"}
+                  onClick={() => handleThemeClick("orange", "Web Design")}
+                >
                   <S.CategoriesThemeText $theme={"orange"}>
                     Web Design
                   </S.CategoriesThemeText>
                 </S.CategoriesTheme>
-                <S.CategoriesTheme $theme={"green"}>
+                <S.CategoriesTheme
+                  $theme={"green"}
+                  $isActive={activeTheme === "green"}
+                  onClick={() => handleThemeClick("green", "Research")}
+                >
                   <S.CategoriesThemeText $theme={"green"}>
                     Research
                   </S.CategoriesThemeText>
                 </S.CategoriesTheme>
-                <S.CategoriesTheme $theme={"purple"}>
+                <S.CategoriesTheme
+                  $theme={"purple"}
+                  $isActive={activeTheme === "purple"}
+                  onClick={() => handleThemeClick("purple", "Copywriting")}
+                >
                   <S.CategoriesThemeText $theme={"purple"}>
                     Copywriting
                   </S.CategoriesThemeText>
