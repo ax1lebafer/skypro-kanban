@@ -86,3 +86,19 @@ export async function addTask({
   const data = await response.json();
   return data;
 }
+
+export async function deleteTask({ id, token }) {
+  const response = await fetch(`${host}/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Ошибка удаления задачи");
+  }
+
+  const data = await response.json();
+  return data;
+}

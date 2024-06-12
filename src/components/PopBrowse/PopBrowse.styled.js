@@ -310,6 +310,11 @@ export const ButtonClose = styled.button`
   }
 `;
 
+export const ErrorMessage = styled.p`
+  color: red;
+  padding-top: 10px;
+`;
+
 export const ButtonLinkClose = styled(ButtonLink)`
   color: #ffffff;
 `;

@@ -1,10 +1,37 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import { appRoutes } from "../../lib/appRoutes";
 import * as S from "./PopBrowse.styled";
+import { useUser } from "../../hooks/useUser";
+import { deleteTask } from "../../lib/api";
+import { useState } from "react";
+import { useTasks } from "../../hooks/useTasks";
 
 const PopBrowse = () => {
   const { id } = useParams();
+  const { userData } = useUser();
+  const { setTasks } = useTasks();
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
+  console.log(userData.token);
+
+  const handleDeleteTask = async () => {
+    try {
+      const response = await deleteTask({
+        id: id,
+        token: userData.token,
+      });
+
+      console.log("DELETE RESPONSE", response);
+
+      setError(null);
+      setTasks(response.tasks);
+      navigate(appRoutes.HOME);
+    } catch (error) {
+      setError("Ошибка удаления задачи");
+    }
+  };
 
   return (
     <S.PopBrowse>
@@ -71,8 +98,11 @@ const PopBrowse = () => {
                   <S.ButtonEdit>Редактировать задачу</S.ButtonEdit>
                 </S.ButtonLink>
                 <S.ButtonLink>
-                  <S.ButtonDelete>Удалить задачу</S.ButtonDelete>
+                  <S.ButtonDelete onClick={handleDeleteTask}>
+                    Удалить задачу
+                  </S.ButtonDelete>
                 </S.ButtonLink>
+                {!error && <S.ErrorMessage>{error}</S.ErrorMessage>}
               </S.ButtonGroup>
               <S.ButtonLinkClose to={appRoutes.HOME}>
                 <S.ButtonClose>Закрыть</S.ButtonClose>
