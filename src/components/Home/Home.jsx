@@ -4,9 +4,12 @@ import { Wrapper } from "../../styles/shared.styled";
 import Header from "../../components/Header/Header";
 import { getTasks } from "../../lib/api";
 import * as S from "./Home.styled";
+import { useUser } from "../../hooks/useUser";
+import { useTasks } from "../../hooks/useTasks";
 
-const Home = ({ userData }) => {
-  const [tasks, setTasks] = useState([]);
+const Home = () => {
+  const { userData } = useUser();
+  const { setTasks } = useTasks();
   const [getTasksError, setGetTasksError] = useState(null);
   const [isLoadingGetTasks, setLoadingGetTasks] = useState(false);
 
@@ -24,14 +27,12 @@ const Home = ({ userData }) => {
     };
 
     fetchTasks();
-  }, [userData.token]);
+  }, []);
 
   return (
     <Wrapper>
-      <Header setTasks={setTasks} tasks={tasks} />
-      {!getTasksError && (
-        <Main taskList={tasks} isLoading={isLoadingGetTasks} />
-      )}
+      <Header />
+      {!getTasksError && <Main isLoading={isLoadingGetTasks} />}
       {getTasksError && <S.ErrorMessage>{getTasksError}</S.ErrorMessage>}
     </Wrapper>
   );

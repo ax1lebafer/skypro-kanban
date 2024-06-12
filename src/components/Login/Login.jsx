@@ -1,10 +1,12 @@
 import * as S from "./Login.styled";
 import { appRoutes } from "../../lib/appRoutes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { login } from "../../lib/api";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../hooks/useUser";
 
-const Login = ({ setAuth, setUserData }) => {
+const Login = () => {
+  const { setUser } = useUser();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
@@ -12,16 +14,6 @@ const Login = ({ setAuth, setUserData }) => {
     login: "",
     password: "",
   });
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      setAuth(true);
-      setUserData(user);
-      navigate(appRoutes.HOME);
-    }
-  }, [setAuth, setUserData, navigate]);
 
   const onInputChange = (event) => {
     const { name, value } = event.target;
@@ -50,9 +42,7 @@ const Login = ({ setAuth, setUserData }) => {
       console.log("LOGIN RESPONSE", response.user);
 
       setError(null);
-      setAuth(true);
-      setUserData(response.user);
-      localStorage.setItem("user", JSON.stringify(response.user));
+      setUser(response.user);
       navigate(appRoutes.HOME);
     } catch (error) {
       setError(error.message);

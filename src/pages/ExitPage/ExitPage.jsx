@@ -1,6 +1,9 @@
 import PopExit from "../../components/PopExit/PopExit";
+import { useUser } from "../../hooks/useUser";
 
-const ExitPage = ({logout}) => {
+const ExitPage = () => {
+    const { logout } = useUser();
+
     return ( <PopExit logout={logout}/> );
 }
  

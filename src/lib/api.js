@@ -41,7 +41,7 @@ export async function register({ login, password, name }) {
   return data;
 }
 
-export async function getTasks({token}) {
+export async function getTasks({ token }) {
   const response = await fetch(host, {
     method: "GET",
     headers: {
@@ -51,6 +51,36 @@ export async function getTasks({token}) {
 
   if (!response.ok) {
     throw new Error("Ошибка сервера");
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+export async function addTask({
+  token,
+  title,
+  topic,
+  description,
+  date,
+  status,
+}) {
+  const response = await fetch(host, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title,
+      topic,
+      description,
+      date,
+      status,
+    }),
+  });
+
+  if (response.status === 400) {
+    throw new Error("Не верные введенные данные");
   }
 
   const data = await response.json();

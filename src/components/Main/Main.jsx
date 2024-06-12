@@ -1,6 +1,7 @@
 import Column from "../Column/Column";
 import * as S from "./Main.styled";
 import { Container, Loader } from "../../styles/shared.styled";
+import { useTasks } from "../../hooks/useTasks";
 
 const statusList = [
   "Без статуса",
@@ -10,7 +11,9 @@ const statusList = [
   "Готово",
 ];
 
-const Main = ({ taskList, isLoading }) => {
+const Main = ({ isLoading }) => {
+  const { tasks } = useTasks();
+
   return (
     <S.Main>
       <Container>
@@ -22,7 +25,7 @@ const Main = ({ taskList, isLoading }) => {
                 <Column
                   key={status}
                   title={status}
-                  taskList={taskList.filter((card) => card.status === status)}
+                  taskList={tasks.filter((card) => card.status === status)}
                 />
               ))}
           </S.MainContent>

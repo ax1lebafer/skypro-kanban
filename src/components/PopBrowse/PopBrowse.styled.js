@@ -28,7 +28,7 @@ export const PopBrowseBlock = styled.div`
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
-  max-width: 630px;
+  max-width: 730px;
   width: 100%;
   padding: 40px 30px 38px;
   border-radius: 10px;
