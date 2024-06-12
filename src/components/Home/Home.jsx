@@ -27,7 +27,7 @@ const Home = () => {
     };
 
     fetchTasks();
-  }, []);
+  }, [setTasks, userData.token]);
 
   return (
     <Wrapper>

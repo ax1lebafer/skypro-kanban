@@ -1,5 +1,4 @@
 import { appRoutes } from "../../lib/appRoutes";
-import { Button } from "../../styles/shared.styled";
 import * as S from "./PopExit.styled";
 
 const PopExit = ({ logout }) => {
@@ -12,9 +11,9 @@ const PopExit = ({ logout }) => {
           </S.PopExitTitle>
           <S.PopExitForm id="formExit" action="#">
             <S.PopExitFormGroup>
-              <Button $primary onClick={logout}>
+              <S.ButtonYes $primary onClick={logout}>
                 Да, выйти
-              </Button>
+              </S.ButtonYes>
               <S.ButtonNo to={appRoutes.HOME}>Нет, остаться</S.ButtonNo>
             </S.PopExitFormGroup>
           </S.PopExitForm>

@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import { appRoutes } from "../../lib/appRoutes";
 import * as S from "./PopBrowse.styled";
@@ -13,89 +13,87 @@ const PopBrowse = () => {
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
               <S.PopBrowseTitle>Название задачи {id}</S.PopBrowseTitle>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
+              <S.CategoriesTheme $isActive={true} $theme={"orange"}>
+                <S.CategoriesThemeText $theme={"orange"}>
+                  Web Design
+                </S.CategoriesThemeText>
+              </S.CategoriesTheme>
             </S.PopBrowseTopBlock>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
-                id="formBrowseCard"
-                action="#"
-              >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
+            <S.Status>
+              <S.StatusText>Статус</S.StatusText>
+              <S.StatusThemes>
+                <S.StatusTheme $isHide={true} $theme={"gray"}>
+                  <S.StatusThemeText>Без статуса</S.StatusThemeText>
+                </S.StatusTheme>
+                <S.StatusTheme $isHide={false} $theme={"gray"}>
+                  <S.StatusThemeText $theme={"gray"}>
+                    Нужно сделать
+                  </S.StatusThemeText>
+                </S.StatusTheme>
+                <S.StatusTheme $isHide={true}>
+                  <S.StatusThemeText>В работе</S.StatusThemeText>
+                </S.StatusTheme>
+                <S.StatusTheme $isHide={true}>
+                  <S.StatusThemeText>Тестирование</S.StatusThemeText>
+                </S.StatusTheme>
+                <S.StatusTheme $isHide={true}>
+                  <S.StatusThemeText>Готово</S.StatusThemeText>
+                </S.StatusTheme>
+              </S.StatusThemes>
+            </S.Status>
+            <S.PopBrowseWrap>
+              <S.PopBrowseForm id="formBrowseCard" action="#">
+                <S.FormBrowseBlock>
+                  <S.LabelSubtitle htmlFor="textArea01">
                     Описание задачи
-                  </label>
-                  <textarea
-                    className="form-browse__area"
+                  </S.LabelSubtitle>
+                  <S.FormBrowseArea
                     name="text"
                     id="textArea01"
                     readOnly
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
+                  ></S.FormBrowseArea>
+                </S.FormBrowseBlock>
+              </S.PopBrowseForm>
               <Calendar />
-            </div>
+            </S.PopBrowseWrap>
             <S.ThemeDownDown>
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
+              <S.CategoriesText>Категория</S.CategoriesText>
+              <S.CategoriesTheme $isActive={true} $theme={"orange"}>
+                <S.CategoriesThemeText $theme={"orange"}>
+                  Web Design
+                </S.CategoriesThemeText>
+              </S.CategoriesTheme>
             </S.ThemeDownDown>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <a href="#">Редактировать задачу</a>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-                <Link to={appRoutes.HOME}>Закрыть</Link>
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                >
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
-            </div>
+            <S.PopBrowseButtonBrowse>
+              <S.ButtonGroup>
+                <S.ButtonLink>
+                  <S.ButtonEdit>Редактировать задачу</S.ButtonEdit>
+                </S.ButtonLink>
+                <S.ButtonLink>
+                  <S.ButtonDelete>Удалить задачу</S.ButtonDelete>
+                </S.ButtonLink>
+              </S.ButtonGroup>
+              <S.ButtonLinkClose to={appRoutes.HOME}>
+                <S.ButtonClose>Закрыть</S.ButtonClose>
+              </S.ButtonLinkClose>
+            </S.PopBrowseButtonBrowse>
+            <S.PopBrowseButtonEdit $isHide={true}>
+              <S.ButtonGroup>
+                <S.ButtonLinkSave>
+                  <S.ButtonSave>Сохранить</S.ButtonSave>
+                </S.ButtonLinkSave>
+                <S.ButtonLinkCancel>
+                  <S.ButtonCancel>Отменить</S.ButtonCancel>
+                </S.ButtonLinkCancel>
+                <S.ButtonLink>
+                  <S.ButtonDelete>Удалить задачу</S.ButtonDelete>
+                </S.ButtonLink>
+              </S.ButtonGroup>
+              <S.ButtonLinkClose>
+                <S.ButtonClose>Закрыть</S.ButtonClose>
+              </S.ButtonLinkClose>
+            </S.PopBrowseButtonEdit>
           </S.PopBrowseContent>
         </S.PopBrowseBlock>
       </S.PopBrowseContainer>
