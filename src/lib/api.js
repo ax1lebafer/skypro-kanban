@@ -102,3 +102,34 @@ export async function deleteTask({ id, token }) {
   const data = await response.json();
   return data;
 }
+
+export async function editTask({
+  id,
+  token,
+  title,
+  topic,
+  description,
+  date,
+  status,
+}) {
+  const response = await fetch(`${host}/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title,
+      topic,
+      description,
+      date,
+      status,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Ошибка редактирования задачи");
+  }
+
+  const data = await response.json();
+  return data;
+}

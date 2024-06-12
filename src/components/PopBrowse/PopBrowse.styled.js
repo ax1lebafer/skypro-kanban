@@ -200,7 +200,7 @@ export const FormBrowseArea = styled.textarea`
   width: 100%;
   outline: none;
   padding: 14px;
-  background: #eaeef6;
+  background: ${({ readOnly }) => (readOnly ? '#eaeef6' : 'transparent')};
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
@@ -213,18 +213,14 @@ export const FormBrowseArea = styled.textarea`
   &::placeholder {
     font-weight: 400;
     font-size: 14px;
-    line-height: 1px;
     color: #94a6be;
-    letter-spacing: -0.14px;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
 
   &::-moz-placeholder {
     font-weight: 400;
     font-size: 14px;
-    line-height: 1px;
     color: #94a6be;
-    letter-spacing: -0.14px;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
   }
 
@@ -253,7 +249,7 @@ export const CategoriesText = styled.p`
 `;
 
 export const PopBrowseButtonBrowse = styled.div`
-  display: flex;
+  display: ${({ $isHide }) => ($isHide ? "none" : "flex")};
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
@@ -273,7 +269,7 @@ export const ButtonEdit = styled.button`
   color: #565eef;
   margin-right: 8px;
   height: 30px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   padding: 0 14px;
 
   ${hover03}
@@ -320,7 +316,7 @@ export const ButtonLinkClose = styled(ButtonLink)`
 `;
 
 export const PopBrowseButtonEdit = styled(PopBrowseButtonBrowse)`
-  display: ${({ $isHide }) => ($isHide ? "none" : "block")};
+  display: ${({ $isHide }) => ($isHide ? "none" : "flex")};
 `;
 
 export const ButtonSave = styled(ButtonClose)`

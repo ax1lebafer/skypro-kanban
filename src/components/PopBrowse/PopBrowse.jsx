@@ -3,7 +3,7 @@ import Calendar from "../Calendar/Calendar";
 import { appRoutes } from "../../lib/appRoutes";
 import * as S from "./PopBrowse.styled";
 import { useUser } from "../../hooks/useUser";
-import { deleteTask } from "../../lib/api";
+import { deleteTask, editTask } from "../../lib/api";
 import { useState } from "react";
 import { useTasks } from "../../hooks/useTasks";
 
@@ -13,8 +13,11 @@ const PopBrowse = () => {
   const { setTasks } = useTasks();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [isHide, setIsHide] = useState(true);
 
-  console.log(userData.token);
+  const changeHideComponents = () => {
+    setIsHide((prevState) => !prevState);
+  };
 
   const handleDeleteTask = async () => {
     try {
@@ -30,6 +33,14 @@ const PopBrowse = () => {
       navigate(appRoutes.HOME);
     } catch (error) {
       setError("Ошибка удаления задачи");
+    }
+  };
+
+  const handleEditTask = async () => {
+    try {
+      const response = await editTask({});
+    } catch (error) {
+      setError("Ошибка редактирования задачи");
     }
   };
 
@@ -49,7 +60,7 @@ const PopBrowse = () => {
             <S.Status>
               <S.StatusText>Статус</S.StatusText>
               <S.StatusThemes>
-                <S.StatusTheme $isHide={true} $theme={"gray"}>
+                <S.StatusTheme $isHide={isHide}>
                   <S.StatusThemeText>Без статуса</S.StatusThemeText>
                 </S.StatusTheme>
                 <S.StatusTheme $isHide={false} $theme={"gray"}>
@@ -57,13 +68,13 @@ const PopBrowse = () => {
                     Нужно сделать
                   </S.StatusThemeText>
                 </S.StatusTheme>
-                <S.StatusTheme $isHide={true}>
+                <S.StatusTheme $isHide={isHide}>
                   <S.StatusThemeText>В работе</S.StatusThemeText>
                 </S.StatusTheme>
-                <S.StatusTheme $isHide={true}>
+                <S.StatusTheme $isHide={isHide}>
                   <S.StatusThemeText>Тестирование</S.StatusThemeText>
                 </S.StatusTheme>
-                <S.StatusTheme $isHide={true}>
+                <S.StatusTheme $isHide={isHide}>
                   <S.StatusThemeText>Готово</S.StatusThemeText>
                 </S.StatusTheme>
               </S.StatusThemes>
@@ -77,7 +88,7 @@ const PopBrowse = () => {
                   <S.FormBrowseArea
                     name="text"
                     id="textArea01"
-                    readOnly
+                    readOnly={isHide}
                     placeholder="Введите описание задачи..."
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
@@ -92,10 +103,12 @@ const PopBrowse = () => {
                 </S.CategoriesThemeText>
               </S.CategoriesTheme>
             </S.ThemeDownDown>
-            <S.PopBrowseButtonBrowse>
+            <S.PopBrowseButtonBrowse $isHide={!isHide}>
               <S.ButtonGroup>
                 <S.ButtonLink>
-                  <S.ButtonEdit>Редактировать задачу</S.ButtonEdit>
+                  <S.ButtonEdit onClick={changeHideComponents}>
+                    Редактировать задачу
+                  </S.ButtonEdit>
                 </S.ButtonLink>
                 <S.ButtonLink>
                   <S.ButtonDelete onClick={handleDeleteTask}>
@@ -108,19 +121,23 @@ const PopBrowse = () => {
                 <S.ButtonClose>Закрыть</S.ButtonClose>
               </S.ButtonLinkClose>
             </S.PopBrowseButtonBrowse>
-            <S.PopBrowseButtonEdit $isHide={true}>
+            <S.PopBrowseButtonEdit $isHide={isHide}>
               <S.ButtonGroup>
                 <S.ButtonLinkSave>
                   <S.ButtonSave>Сохранить</S.ButtonSave>
                 </S.ButtonLinkSave>
                 <S.ButtonLinkCancel>
-                  <S.ButtonCancel>Отменить</S.ButtonCancel>
+                  <S.ButtonCancel onClick={changeHideComponents}>
+                    Отменить
+                  </S.ButtonCancel>
                 </S.ButtonLinkCancel>
                 <S.ButtonLink>
-                  <S.ButtonDelete>Удалить задачу</S.ButtonDelete>
+                  <S.ButtonDelete onClick={handleDeleteTask}>
+                    Удалить задачу
+                  </S.ButtonDelete>
                 </S.ButtonLink>
               </S.ButtonGroup>
-              <S.ButtonLinkClose>
+              <S.ButtonLinkClose to={appRoutes.HOME}>
                 <S.ButtonClose>Закрыть</S.ButtonClose>
               </S.ButtonLinkClose>
             </S.PopBrowseButtonEdit>
