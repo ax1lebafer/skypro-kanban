@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container } from "../../styles/shared.styled";
 import * as S from "./Header.styled";
 import { appRoutes } from "../../lib/appRoutes";
+import { useUser } from "../../hooks/useUser";
 
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
@@ -9,6 +10,8 @@ const Header = () => {
   function handleOpenModal() {
     setOpen((prevState) => !prevState);
   }
+
+  const { userData } = useUser();
 
   return (
     <S.Header>
@@ -28,11 +31,13 @@ const Header = () => {
             <S.HeaderButtonMainNew to={appRoutes.ADD_TASK}>
               Создать новую задачу
             </S.HeaderButtonMainNew>
-            <S.HeaderUser onClick={handleOpenModal}>Ivan Ivanov</S.HeaderUser>
+            <S.HeaderUser onClick={handleOpenModal}>
+              {userData.name}
+            </S.HeaderUser>
             {isOpen && (
               <S.PopUserSet>
-                <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
-                <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+                <S.PopUserSetName>{userData.name}</S.PopUserSetName>
+                <S.PopUserSetMail>{userData.login}</S.PopUserSetMail>
                 <S.PopUserSetTheme>
                   <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
                   <S.InputCheckbox />
