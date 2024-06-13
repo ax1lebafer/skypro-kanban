@@ -142,24 +142,20 @@ export const StatusThemes = styled.div`
 export const StatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
+  background: ${(props) =>
+    props.$highlighted || props.$isChecked ? "#94a6be" : " #FFFFFF"};
+  color: ${(props) =>
+    props.$highlighted || props.$isChecked ? "#FFFFFF" : "#94a6be"};
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-
-  display: ${({ $isHide }) => ($isHide ? "none" : "block")};
-
-  ${({ $theme }) => themeStyles[$theme] || ""}
+  cursor: pointer;
 `;
 
 export const StatusThemeText = styled.p`
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
-
-  display: ${({ $isHide }) => ($isHide ? "none" : "block")};
-
-  ${({ $theme }) => themeStyles[$theme] || ""}
 `;
 
 export const PopBrowseWrap = styled.div`
@@ -200,7 +196,7 @@ export const FormBrowseArea = styled.textarea`
   width: 100%;
   outline: none;
   padding: 14px;
-  background: ${({ readOnly }) => (readOnly ? '#eaeef6' : 'transparent')};
+  background: ${({ readOnly }) => (readOnly ? "#eaeef6" : "transparent")};
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;

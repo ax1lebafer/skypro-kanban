@@ -4,24 +4,38 @@ import { appRoutes } from "../../lib/appRoutes";
 import * as S from "./PopBrowse.styled";
 import { useUser } from "../../hooks/useUser";
 import { deleteTask, editTask } from "../../lib/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTasks } from "../../hooks/useTasks";
 import { categoryColors } from "../../lib/colors";
 
 const PopBrowse = () => {
   const { id } = useParams();
   const { userData } = useUser();
-  const { tasks, setTasks } = useTasks();
+  const { tasks, setTasks, statusList } = useTasks();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const [isHide, setIsHide] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isStatus, setIsStatus] = useState(false);
 
   const foundTask = tasks.find((e) => e._id === id);
+  const [changeTask, setChangeTask] = useState(foundTask);
+
+  useEffect(() => {
+    if (foundTask) {
+      setChangeTask(foundTask);
+      setIsStatus(foundTask.status);
+    }
+  }, [foundTask]);
 
   const themeColor = foundTask ? categoryColors[foundTask.topic] : "";
 
-  const changeHideComponents = () => {
-    setIsHide((prevState) => !prevState);
+  const handleStatusClick = (status) => {
+    setChangeTask((prevTask) => ({ ...prevTask, status }));
+    setIsStatus(status);
+  };
+
+  const editMode = () => {
+    setIsEdit((prevState) => !prevState);
   };
 
   const handleDeleteTask = async () => {
@@ -43,7 +57,21 @@ const PopBrowse = () => {
 
   const handleEditTask = async () => {
     try {
-      const response = await editTask({});
+      const response = await editTask({
+        id: changeTask._id,
+        token: userData.token,
+        title: changeTask.title,
+        topic: changeTask.topic,
+        status: changeTask.status,
+        description: changeTask.description,
+        date: changeTask.date,
+      });
+
+      console.log("EDIT RESPONSE", response);
+      setTasks(response.tasks);
+      setError(null);
+      setIsEdit(false);
+      navigate(appRoutes.HOME);
     } catch (error) {
       setError("Ошибка редактирования задачи");
     }
@@ -55,33 +83,31 @@ const PopBrowse = () => {
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBrowseTitle>{foundTask?.title}</S.PopBrowseTitle>
+              <S.PopBrowseTitle>{changeTask?.title}</S.PopBrowseTitle>
               <S.CategoriesTheme $isActive={true} $theme={themeColor}>
                 <S.CategoriesThemeText $theme={themeColor}>
-                  {foundTask?.topic}
+                  {changeTask?.topic}
                 </S.CategoriesThemeText>
               </S.CategoriesTheme>
             </S.PopBrowseTopBlock>
             <S.Status>
               <S.StatusText>Статус</S.StatusText>
               <S.StatusThemes>
-                <S.StatusTheme $isHide={isHide}>
-                  <S.StatusThemeText>Без статуса</S.StatusThemeText>
-                </S.StatusTheme>
-                <S.StatusTheme $isHide={false} $theme={"gray"}>
-                  <S.StatusThemeText $theme={"gray"}>
-                    Нужно сделать
-                  </S.StatusThemeText>
-                </S.StatusTheme>
-                <S.StatusTheme $isHide={isHide}>
-                  <S.StatusThemeText>В работе</S.StatusThemeText>
-                </S.StatusTheme>
-                <S.StatusTheme $isHide={isHide}>
-                  <S.StatusThemeText>Тестирование</S.StatusThemeText>
-                </S.StatusTheme>
-                <S.StatusTheme $isHide={isHide}>
-                  <S.StatusThemeText>Готово</S.StatusThemeText>
-                </S.StatusTheme>
+                {!isEdit && (
+                  <S.StatusTheme $highlighted>
+                    <S.StatusThemeText>{changeTask?.status}</S.StatusThemeText>
+                  </S.StatusTheme>
+                )}
+                {isEdit &&
+                  statusList.map((status) => (
+                    <S.StatusTheme
+                      key={status}
+                      $isChecked={status === isStatus}
+                      onClick={() => handleStatusClick(status)}
+                    >
+                      <S.StatusThemeText>{status}</S.StatusThemeText>
+                    </S.StatusTheme>
+                  ))}
               </S.StatusThemes>
             </S.Status>
             <S.PopBrowseWrap>
@@ -93,13 +119,22 @@ const PopBrowse = () => {
                   <S.FormBrowseArea
                     name="text"
                     id="textArea01"
-                    readOnly={isHide}
+                    readOnly={!isEdit}
                     placeholder="Введите описание задачи..."
-                    value={foundTask?.description}
+                    value={changeTask?.description}
+                    onChange={(e) =>
+                      setChangeTask({
+                        ...changeTask,
+                        description: e.target.value,
+                      })
+                    }
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
-              <Calendar selected={foundTask?.date} setSelected={foundTask?.date}/>
+              <Calendar
+                selected={changeTask?.date}
+                setSelected={(date) => setChangeTask({ ...changeTask, date })}
+              />
             </S.PopBrowseWrap>
             <S.ThemeDownDown>
               <S.CategoriesText>Категория</S.CategoriesText>
@@ -109,44 +144,48 @@ const PopBrowse = () => {
                 </S.CategoriesThemeText>
               </S.CategoriesTheme>
             </S.ThemeDownDown>
-            <S.PopBrowseButtonBrowse $isHide={!isHide}>
-              <S.ButtonGroup>
-                <S.ButtonLink>
-                  <S.ButtonEdit onClick={changeHideComponents}>
-                    Редактировать задачу
-                  </S.ButtonEdit>
-                </S.ButtonLink>
-                <S.ButtonLink>
-                  <S.ButtonDelete onClick={handleDeleteTask}>
-                    Удалить задачу
-                  </S.ButtonDelete>
-                </S.ButtonLink>
-                {!error && <S.ErrorMessage>{error}</S.ErrorMessage>}
-              </S.ButtonGroup>
-              <S.ButtonLinkClose to={appRoutes.HOME}>
-                <S.ButtonClose>Закрыть</S.ButtonClose>
-              </S.ButtonLinkClose>
-            </S.PopBrowseButtonBrowse>
-            <S.PopBrowseButtonEdit $isHide={isHide}>
-              <S.ButtonGroup>
-                <S.ButtonLinkSave>
-                  <S.ButtonSave>Сохранить</S.ButtonSave>
-                </S.ButtonLinkSave>
-                <S.ButtonLinkCancel>
-                  <S.ButtonCancel onClick={changeHideComponents}>
-                    Отменить
-                  </S.ButtonCancel>
-                </S.ButtonLinkCancel>
-                <S.ButtonLink>
-                  <S.ButtonDelete onClick={handleDeleteTask}>
-                    Удалить задачу
-                  </S.ButtonDelete>
-                </S.ButtonLink>
-              </S.ButtonGroup>
-              <S.ButtonLinkClose to={appRoutes.HOME}>
-                <S.ButtonClose>Закрыть</S.ButtonClose>
-              </S.ButtonLinkClose>
-            </S.PopBrowseButtonEdit>
+            {!isEdit && (
+              <S.PopBrowseButtonBrowse>
+                <S.ButtonGroup>
+                  <S.ButtonLink>
+                    <S.ButtonEdit onClick={editMode}>
+                      Редактировать задачу
+                    </S.ButtonEdit>
+                  </S.ButtonLink>
+                  <S.ButtonLink>
+                    <S.ButtonDelete onClick={handleDeleteTask}>
+                      Удалить задачу
+                    </S.ButtonDelete>
+                  </S.ButtonLink>
+                  {!error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+                </S.ButtonGroup>
+                <S.ButtonLinkClose to={appRoutes.HOME}>
+                  <S.ButtonClose>Закрыть</S.ButtonClose>
+                </S.ButtonLinkClose>
+              </S.PopBrowseButtonBrowse>
+            )}
+            {isEdit && (
+              <S.PopBrowseButtonEdit>
+                <S.ButtonGroup>
+                  <S.ButtonLinkSave>
+                    <S.ButtonSave onClick={handleEditTask}>
+                      Сохранить
+                    </S.ButtonSave>
+                  </S.ButtonLinkSave>
+                  <S.ButtonLinkCancel>
+                    <S.ButtonCancel onClick={editMode}>Отменить</S.ButtonCancel>
+                  </S.ButtonLinkCancel>
+                  <S.ButtonLink>
+                    <S.ButtonDelete onClick={handleDeleteTask}>
+                      Удалить задачу
+                    </S.ButtonDelete>
+                  </S.ButtonLink>
+                </S.ButtonGroup>
+                <S.ButtonLinkClose to={appRoutes.HOME}>
+                  <S.ButtonClose>Закрыть</S.ButtonClose>
+                </S.ButtonLinkClose>
+              </S.PopBrowseButtonEdit>
+            )}
           </S.PopBrowseContent>
         </S.PopBrowseBlock>
       </S.PopBrowseContainer>
