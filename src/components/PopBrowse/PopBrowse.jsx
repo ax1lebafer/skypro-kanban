@@ -16,6 +16,8 @@ const PopBrowse = () => {
   const [error, setError] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const [isStatus, setIsStatus] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const foundTask = tasks.find((e) => e._id === id);
   const [changeTask, setChangeTask] = useState(foundTask);
@@ -39,6 +41,8 @@ const PopBrowse = () => {
   };
 
   const handleDeleteTask = async () => {
+    setIsDeleting(true);
+
     try {
       const response = await deleteTask({
         id: id,
@@ -52,10 +56,14 @@ const PopBrowse = () => {
       navigate(appRoutes.HOME);
     } catch (error) {
       setError("Ошибка удаления задачи");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
   const handleEditTask = async () => {
+    setIsSaving(true);
+
     try {
       const response = await editTask({
         id: changeTask._id,
@@ -74,6 +82,8 @@ const PopBrowse = () => {
       navigate(appRoutes.HOME);
     } catch (error) {
       setError("Ошибка редактирования задачи");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -153,9 +163,14 @@ const PopBrowse = () => {
                     </S.ButtonEdit>
                   </S.ButtonLink>
                   <S.ButtonLink>
-                    <S.ButtonDelete onClick={handleDeleteTask}>
-                      Удалить задачу
-                    </S.ButtonDelete>
+                    {!isDeleting && (
+                      <S.ButtonDelete onClick={handleDeleteTask}>
+                        Удалить задачу
+                      </S.ButtonDelete>
+                    )}
+                    {isDeleting && (
+                      <S.ButtonDelete disabled>Удаление задачи...</S.ButtonDelete>
+                    )}
                   </S.ButtonLink>
                   {!error && <S.ErrorMessage>{error}</S.ErrorMessage>}
                 </S.ButtonGroup>
@@ -168,17 +183,25 @@ const PopBrowse = () => {
               <S.PopBrowseButtonEdit>
                 <S.ButtonGroup>
                   <S.ButtonLinkSave>
-                    <S.ButtonSave onClick={handleEditTask}>
-                      Сохранить
-                    </S.ButtonSave>
+                    {!isSaving && (
+                      <S.ButtonSave onClick={handleEditTask}>
+                        Сохранить
+                      </S.ButtonSave>
+                    )}
+                    {isSaving && <S.ButtonSave>Сохранение...</S.ButtonSave>}
                   </S.ButtonLinkSave>
                   <S.ButtonLinkCancel>
                     <S.ButtonCancel onClick={editMode}>Отменить</S.ButtonCancel>
                   </S.ButtonLinkCancel>
                   <S.ButtonLink>
-                    <S.ButtonDelete onClick={handleDeleteTask}>
-                      Удалить задачу
-                    </S.ButtonDelete>
+                    {!isDeleting && (
+                      <S.ButtonDelete onClick={handleDeleteTask}>
+                        Удалить задачу
+                      </S.ButtonDelete>
+                    )}
+                    {isDeleting && (
+                      <S.ButtonDelete disabled>Удаление задачи...</S.ButtonDelete>
+                    )}
                   </S.ButtonLink>
                 </S.ButtonGroup>
                 <S.ButtonLinkClose to={appRoutes.HOME}>

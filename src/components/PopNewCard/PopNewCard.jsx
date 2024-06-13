@@ -11,6 +11,7 @@ const PopNewCard = () => {
   const { userData } = useUser();
   const { setTasks } = useTasks();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [activeTheme, setActiveTheme] = useState("Research");
 
@@ -37,6 +38,8 @@ const PopNewCard = () => {
       return;
     }
 
+    setIsLoading(true);
+
     try {
       const response = await addTask({
         token: userData.token,
@@ -52,6 +55,8 @@ const PopNewCard = () => {
     } catch (error) {
       console.log(error.message);
       setError("Что-то пошло не так. Попробуйте еще раз!");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -131,9 +136,16 @@ const PopNewCard = () => {
               </S.CategoriesThemes>
             </S.Categories>
             {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
-            <S.FormNewCreateButton id="btnCreate" onClick={createTask}>
-              Создать задачу
-            </S.FormNewCreateButton>
+            {!isLoading && (
+              <S.FormNewCreateButton onClick={createTask}>
+                Создать задачу
+              </S.FormNewCreateButton>
+            )}
+            {isLoading && (
+              <S.FormNewCreateButton disabled>
+                Создание задачи...
+              </S.FormNewCreateButton>
+            )}
           </S.PopNewCardContent>
         </S.PopNewCardBlock>
       </S.PopNewCardContainer>
