@@ -6,14 +6,19 @@ import { useUser } from "../../hooks/useUser";
 import { deleteTask, editTask } from "../../lib/api";
 import { useState } from "react";
 import { useTasks } from "../../hooks/useTasks";
+import { categoryColors } from "../../lib/colors";
 
 const PopBrowse = () => {
   const { id } = useParams();
   const { userData } = useUser();
-  const { setTasks } = useTasks();
+  const { tasks, setTasks } = useTasks();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isHide, setIsHide] = useState(true);
+
+  const foundTask = tasks.find((e) => e._id === id);
+
+  const themeColor = foundTask ? categoryColors[foundTask.topic] : "";
 
   const changeHideComponents = () => {
     setIsHide((prevState) => !prevState);
@@ -50,10 +55,10 @@ const PopBrowse = () => {
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBrowseTitle>Название задачи {id}</S.PopBrowseTitle>
-              <S.CategoriesTheme $isActive={true} $theme={"orange"}>
-                <S.CategoriesThemeText $theme={"orange"}>
-                  Web Design
+              <S.PopBrowseTitle>{foundTask?.title}</S.PopBrowseTitle>
+              <S.CategoriesTheme $isActive={true} $theme={themeColor}>
+                <S.CategoriesThemeText $theme={themeColor}>
+                  {foundTask?.topic}
                 </S.CategoriesThemeText>
               </S.CategoriesTheme>
             </S.PopBrowseTopBlock>
@@ -90,10 +95,11 @@ const PopBrowse = () => {
                     id="textArea01"
                     readOnly={isHide}
                     placeholder="Введите описание задачи..."
+                    value={foundTask?.description}
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
-              <Calendar />
+              <Calendar selected={foundTask?.date} setSelected={foundTask?.date}/>
             </S.PopBrowseWrap>
             <S.ThemeDownDown>
               <S.CategoriesText>Категория</S.CategoriesText>
