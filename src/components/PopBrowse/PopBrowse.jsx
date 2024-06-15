@@ -141,10 +141,13 @@ const PopBrowse = () => {
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
-              <Calendar
-                selected={changeTask?.date}
-                setSelected={(date) => setChangeTask({ ...changeTask, date })}
-              />
+              {!isEdit && <Calendar selected={new Date(changeTask?.date)} />}
+              {isEdit && (
+                <Calendar
+                  selected={new Date(changeTask?.date)}
+                  setSelected={(date) => setChangeTask({ ...changeTask, date })}
+                />
+              )}
             </S.PopBrowseWrap>
             <S.ThemeDownDown>
               <S.CategoriesText>Категория</S.CategoriesText>
@@ -169,7 +172,9 @@ const PopBrowse = () => {
                       </S.ButtonDelete>
                     )}
                     {isDeleting && (
-                      <S.ButtonDelete disabled>Удаление задачи...</S.ButtonDelete>
+                      <S.ButtonDelete disabled>
+                        Удаление задачи...
+                      </S.ButtonDelete>
                     )}
                   </S.ButtonLink>
                   {!error && <S.ErrorMessage>{error}</S.ErrorMessage>}
@@ -200,7 +205,9 @@ const PopBrowse = () => {
                       </S.ButtonDelete>
                     )}
                     {isDeleting && (
-                      <S.ButtonDelete disabled>Удаление задачи...</S.ButtonDelete>
+                      <S.ButtonDelete disabled>
+                        Удаление задачи...
+                      </S.ButtonDelete>
                     )}
                   </S.ButtonLink>
                 </S.ButtonGroup>
