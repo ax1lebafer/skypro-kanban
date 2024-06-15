@@ -151,9 +151,9 @@ const PopBrowse = () => {
             </S.PopBrowseWrap>
             <S.ThemeDownDown>
               <S.CategoriesText>Категория</S.CategoriesText>
-              <S.CategoriesTheme $isActive={true} $theme={"orange"}>
-                <S.CategoriesThemeText $theme={"orange"}>
-                  Web Design
+              <S.CategoriesTheme $isActive={true} $theme={themeColor}>
+                <S.CategoriesThemeText $theme={themeColor}>
+                  {changeTask?.topic}
                 </S.CategoriesThemeText>
               </S.CategoriesTheme>
             </S.ThemeDownDown>
