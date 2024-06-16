@@ -18,14 +18,14 @@ const Header = () => {
       <Container>
         <S.HeaderBlock>
           <S.HeaderLogoLight>
-            <S.LogogLink href="" target="_self">
+            <S.LogoLink to={appRoutes.HOME}>
               <S.HeaderLogoImage src="images/logo.png" alt="logo" />
-            </S.LogogLink>
+            </S.LogoLink>
           </S.HeaderLogoLight>
           <S.HeaderLogoDark>
-            <S.LogogLink href="" target="_self">
+            <S.LogoLink to={appRoutes.HOME}>
               <S.HeaderLogoImage src="images/logo_dark.png" alt="logo" />
-            </S.LogogLink>
+            </S.LogoLink>
           </S.HeaderLogoDark>
           <S.HeaderNav>
             <S.HeaderButtonMainNew to={appRoutes.ADD_TASK}>

@@ -34,7 +34,7 @@ export const HeaderLogoDark = styled.div`
   display: none;
 `;
 
-export const LogogLink = styled.a``;
+export const LogoLink = styled(Link)``;
 
 export const HeaderNav = styled.nav`
   max-width: 290px;
