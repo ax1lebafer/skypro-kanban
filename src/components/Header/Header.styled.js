@@ -6,7 +6,7 @@ import { breakpoints } from "../../lib/breakpoints";
 export const Header = styled.header`
   width: 100%;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.headerBackground};
 `;
 
 export const HeaderBlock = styled.div`
@@ -23,6 +23,7 @@ export const HeaderBlock = styled.div`
 
 export const HeaderLogoLight = styled.div`
   width: 85px;
+  display: ${({ $theme }) => ($theme === 'light' ? 'block' : 'none')};
 `;
 
 export const HeaderLogoImage = styled.img`
@@ -31,10 +32,10 @@ export const HeaderLogoImage = styled.img`
 
 export const HeaderLogoDark = styled.div`
   width: 85px;
-  display: none;
+  display: ${({ $theme }) => ($theme === 'light' ? 'none' : 'block')};
 `;
 
-export const LogogLink = styled.a``;
+export const LogoLink = styled(Link)``;
 
 export const HeaderNav = styled.nav`
   max-width: 290px;
@@ -84,7 +85,7 @@ export const HeaderUser = styled.button`
   justify-content: center;
   font-size: 14px;
   line-height: 20px;
-  color: #565eef;
+  color: ${({ theme }) => theme.headerUserColor};
   cursor: pointer;
   background: transparent;
   outline: none;
@@ -112,7 +113,7 @@ export const PopUserSet = styled.div`
   top: 61px;
   right: 0;
   width: 213px;
-  height: 205px;
+  height: 150px; // Поменять при реализации смены темы на 205px
   border-radius: 10px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   background: #fff;

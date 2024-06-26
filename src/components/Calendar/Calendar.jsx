@@ -24,7 +24,7 @@ const Calendar = ({ selected, setSelected }) => {
           <S.CalendarTitleBottom>
             Срок исполнения:
             <S.FormatDate>
-              {format(selected, "dd.MM.yy", { locale: ru })}
+              {format(selected, " dd.MM.yy", { locale: ru })}
             </S.FormatDate>
           </S.CalendarTitleBottom>
         )}

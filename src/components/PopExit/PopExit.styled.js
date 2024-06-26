@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { hover03 } from "../../styles/shared.styled";
+import { Button, hover03 } from "../../styles/shared.styled";
 import { breakpoints } from "../../lib/breakpoints";
 
 export const PopExit = styled.div`
@@ -64,6 +64,15 @@ export const PopExitFormGroup = styled.div`
 
   @media only screen and (max-width: ${breakpoints.sm}px) {
     display: block;
+  }
+`;
+
+export const ButtonYes = styled(Button)`
+  @media only screen and (max-width: ${breakpoints.sm}px) {
+    width: 100%;
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 `;
 
